@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Eventos Musicales</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Incluir archivo CSS externo -->
+        <link rel="stylesheet" href="estilos.css">
+
+</head>
+
+<body>
+    <!-- === ETAPA 1: HTML - Estructura Semántica === -->
+    <div class="app">
+        <header>
+            <div class="logo">
+                <i class="fas fa-music"></i> Eventos Musicales
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="user-options">
+                <a href="#"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+            </div>
+        </header>
+
+        <aside class="sidebar">
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#artistas" class="nav-link active" data-section="artistas">
+                            <i class="fas fa-users"></i> Artistas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#locaciones" class="nav-link" data-section="locaciones">
+                            <i class="fas fa-map-marker-alt"></i> Locaciones
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#conciertos" class="nav-link" data-section="conciertos">
+                            <i class="fas fa-guitar"></i> Conciertos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#lista" class="nav-link" data-section="lista">
+                            <i class="fas fa-list"></i> Ejercicio Lista
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#formulario" class="nav-link" data-section="formulario">
+                            <i class="fas fa-edit"></i> Ejercicio Formulario
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <!-- Sección Artistas -->
+            <section id="artistas" class="content-section active">
+                <h2>Gestión de Artistas</h2>
+                <div class="card">
+                    <h3>Agregar Artista</h3>
+                    <form id="form-artista">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Nombre del artista" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Género musical">
+                        </div>
+                        <div class="form-group">
+                            <input type="file" id="foto-artista" accept="image/*">
+                            <img id="preview-artista" class="image-preview" style="display:none;">
+                        </div>
+                        <button type="submit" class="btn">Guardar Artista</button>
+                    </form>
+                </div>
+                <div class="card">
+                    <h3>Lista de Artistas</h3>
+                    <div id="lista-artistas"></div>
+                </div>
+            </section>
+
+            <!-- Sección Locaciones -->
+            <section id="locaciones" class="content-section">
+                <h2>Gestión de Locaciones</h2>
+                <div class="card">
+                    <h3>Agregar Locación</h3>
+                    <form id="form-locacion">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Nombre de la locación" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" class="form-control" placeholder="Capacidad">
+                        </div>
+                        <button type="submit" class="btn">Guardar Locación</button>
+                    </form>
+                </div>
+                <div class="card">
+                    <h3>Lista de Locaciones</h3>
+                    <div id="lista-locaciones"></div>
+                </div>
+            </section>
+
+            <!-- Sección Conciertos -->
+            <section id="conciertos" class="content-section">
+                <h2>Gestión de Conciertos</h2>
+                <div class="card">
+                    <h3>Agregar Concierto</h3>
+                    <form id="form-concierto">
+                        <div class="form-group">
+                            <select class="form-control" id="select-artista" required>
+                                <option value="">Seleccionar artista</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" id="select-locacion" required>
+                                <option value="">Seleccionar locación</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="date" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn">Guardar Concierto</button>
+                    </form>
+                </div>
+                <div class="card">
+                    <h3>Próximos Conciertos</h3>
+                    <div id="lista-conciertos"></div>
+                </div>
+            </section>
+
+            <!-- Ejercicio Lista -->
+            <section id="lista" class="content-section">
+                <h2>Ejercicio: Lista con Imágenes</h2>
+                <div class="card">
+                    <div class="form-group">
+                        <input type="text" id="nuevo-item" class="form-control" placeholder="Nuevo elemento">
+                        <input type="file" id="imagen-item" accept="image/*">
+                        <button class="btn" id="agregar-item">Agregar a la lista</button>
+                    </div>
+                    <div id="lista-dinamica"></div>
+                </div>
+            </section>
+
+            <!-- Ejercicio Formulario -->
+            <section id="formulario" class="content-section">
+                <h2>Ejercicio: Formulario Completo</h2>
+                <div class="card">
+                    <form id="form-usuario">
+                        <div class="form-group">
+                            <label>Nombre completo:</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email:</label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Intereses:</label>
+                            <select class="form-control" multiple>
+                                <option>Música</option>
+                                <option>Deportes</option>
+                                <option>Tecnología</option>
+                                <option>Arte</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox"> Recibir newsletter
+                            </label>
+                        </div>
+                        <button type="submit" class="btn">Registrar</button>
+                    </form>
+                    <div id="resultado-formulario" style="margin-top: 1rem;"></div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>&copy; 2024 Gestor de Eventos</p>
+        </footer>
+    </div>
+
+    <!-- === ETAPA 3: JavaScript - Interactividad === -->
+
+    	<script  src="funciones.js"></script>
+</body>
+
+</html>
